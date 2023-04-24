@@ -17,8 +17,12 @@ def html_text():
 
 
 def test_get_section_text(html_text):
+    """Test that get_section_text() returns the expected list of strings."""
+
     result = get_section_text(html_text)
-    assert result != ""
+
+    assert result[0][:20] == "Childhood friends Bi"
+    assert result[20][:29] == "In August 2018, Toyota Tsusho"
 
 
 testdata = [
