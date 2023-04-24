@@ -1,7 +1,5 @@
 import pytest
 from pathlib import Path
-import pandas as pd
-
 from src.parse_html import get_section_text, filter_words, get_page_word_count
 
 
