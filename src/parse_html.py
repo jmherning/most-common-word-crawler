@@ -36,6 +36,8 @@ def get_section_text(text: str):
 
 
 def filter_words(text: str, exclude: list):
+    """Filters text into list of words. Excludes words in exclude list."""
+
     try:
         tokens = word_tokenize(text)
     except LookupError:
@@ -44,13 +46,23 @@ def filter_words(text: str, exclude: list):
 
     punctuations = list(string.punctuation)
 
-    tokens = [word for word in tokens if word not in punctuations]
-    tokens = [word for word in tokens if not word.isdigit()]
-    tokens = [word for word in tokens if re.match(DECIMAL_NUM_REGEX, word) is None]
-    tokens = [word for word in tokens if re.match(HYPHENATED_NUM_REGEX, word) is None]
-    tokens = [word for word in tokens if word not in exclude]
+    words = []
+    for word in tokens:
+        if (
+            # Filters out punctuation
+            word not in punctuations
+            # Filters out digits
+            and not word.isdigit()
+            # Filters out decimal numbers
+            and re.match(DECIMAL_NUM_REGEX, word) is None
+            # Filters out hyphenated numbers
+            and re.match(HYPHENATED_NUM_REGEX, word) is None
+            # Filters out all words in exclude
+            and word not in exclude
+        ):
+            words.append(word)
 
-    return tokens
+    return words
 
 
 def count_words(words: []):
