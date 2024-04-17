@@ -1,40 +1,47 @@
-# Most Common Word Web Page Scraper
+# Microsoft Wikipedia Page History Section Word Counter
 
-This CLI tool will scrape text from a web page and then return a list of words and the number of times each word is found.
-Currenlty only designed to work with the history section of https://en.wikipedia.org/wiki/Microsoft.
+Python command-line tool for counting the occurrence of words in the history section of the [Microsoft Wikipedia page](https://en.wikipedia.org/wiki/Microsoft).
 
-## Usage Examples
+## Setup
 
-### Default
-This will return the 10 most common words found.
-Will not exclude any words by default.
+Install the required dependencies:
 
+```bash
+pip install -r requirements.txt
 ```
+
+## Usage
+
+1. Open a terminal or command prompt.
+2. Navigate to the project root directory
+3. Run the CLI script with the following command:
+
+```bash
 python most_common_word.py
 ```
 
-### Set number of words to return
+### Optional arguments
 
-```
-python most_common_word.py --number 5
-```
+- `-h`, `--help`: Show the help message and exit.
+- `-n`, `--num_words`: Number of words to count (default is 10).
+- `-e`, `--exclude`: List of words to exclude from counting.
 
-```
+### Customize number of words output
+
+You can customize the number of words to show in the ouput using the `-n` or `--num_words` optinal argument.
+
+Example below will only return 5 words along with thier count:
+
+```bash
 python most_common_word.py -n 5
 ```
 
-### Exclude the words 'the' and 'Microsoft' from list
+### Exclude words in the output
 
-```
-python most_common_word.py the Microsoft
-```
+You can specify words to exclude from the output using the `-e` or `--exclude` optinal argument.
 
-### Exclude the words 'the' and 'Microsoft' and limit output to 15
+Example below will exclude the words **the**, **in**, and **of** from the output:
 
-```
-python most_common_word.py the Microsoft -n 15
-```
-
-```
-python most_common_word.py -n 15 the Microsoft
+```text
+python most_common_word.py -e the in of
 ```
